@@ -97,6 +97,15 @@ class ConverterTest extends PHPUnitTestCase
     /**
      * @return void
      */
+    public function testConvertToWindDirection(): void
+    {
+        $this->assertNull(Converter::convertToWindDirection(null));
+        $this->assertSame(11, Converter::convertToWindDirection('weather1_bodyUnitImage is-wind11'));
+    }
+
+    /**
+     * @return void
+     */
     public function testConvertToWave(): void
     {
         $this->assertNull(Converter::convertToWave(null));

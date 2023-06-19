@@ -230,6 +230,17 @@ class MainConverter
      * @param  string|null  $value
      * @return int|null
      */
+    public function convertToWindDirection(string $value = null): ?int
+    {
+        preg_match('/is-wind(\d+)/', $this->convertToString($value), $matches);
+
+        return $matches[1] ?? null;
+    }
+
+    /**
+     * @param  string|null  $value
+     * @return int|null
+     */
     public function convertToWave(string $value = null): ?int
     {
         return $this->convertToInt(Trimmer::rtrim($this->convertToString($value), 'cm'));

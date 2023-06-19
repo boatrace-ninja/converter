@@ -110,6 +110,15 @@ class MainConverterTest extends PHPUnitTestCase
     /**
      * @return void
      */
+    public function testConvertToWindDirection(): void
+    {
+        $this->assertNull($this->converter->convertToWindDirection(null));
+        $this->assertSame(11, $this->converter->convertToWindDirection('weather1_bodyUnitImage is-wind11'));
+    }
+
+    /**
+     * @return void
+     */
     public function testConvertToWave(): void
     {
         $this->assertNull($this->converter->convertToWave(null));
