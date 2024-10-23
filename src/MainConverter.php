@@ -143,7 +143,7 @@ class MainConverter
     {
         preg_match('/is-wind(\d+)/', $this->convertToString($value) ?? '', $matches);
 
-        return $matches[1] ?? null;
+        return (int) $matches[1] ?? null;
     }
 
     /**
