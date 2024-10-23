@@ -60,7 +60,9 @@ class MainConverter
      */
     public function convertToString(?string $value): ?string
     {
-        return is_null($value) ? null : Trimmer::trim(mb_convert_kana($value, 'as', 'utf-8'));
+        return is_null($value) ? null : Trimmer::trim(
+            mb_convert_kana($value, 'as', 'utf-8')
+        );
     }
 
     /**
@@ -99,7 +101,9 @@ class MainConverter
      */
     public function convertToFlying(?string $value): ?int
     {
-        return $this->convertToInt(Trimmer::ltrim($this->convertToString($value), 'F'));
+        return $this->convertToInt(
+            Trimmer::ltrim($this->convertToString($value), 'F')
+        );
     }
 
     /**
@@ -108,7 +112,9 @@ class MainConverter
      */
     public function convertToLate(?string $value): ?int
     {
-        return $this->convertToInt(Trimmer::ltrim($this->convertToString($value), 'L'));
+        return $this->convertToInt(
+            Trimmer::ltrim($this->convertToString($value), 'L')
+        );
     }
 
     /**
@@ -132,7 +138,9 @@ class MainConverter
      */
     public function convertToWind(?string $value): ?int
     {
-        return $this->convertToInt(Trimmer::rtrim($this->convertToString($value), 'm'));
+        return $this->convertToInt(
+            Trimmer::rtrim($this->convertToString($value), 'm')
+        );
     }
 
     /**
@@ -141,7 +149,9 @@ class MainConverter
      */
     public function convertToWindDirection(?string $value): ?int
     {
-        return preg_match('/is-wind(\d+)/', $this->convertToString($value) ?? '', $matches) ? (int) $matches[1] : null;
+        $pattern = '/is-wind(\d+)/';
+        $subject = $this->convertToString($value) ?? '';
+        return preg_match($pattern, $subject, $matches) ? (int) $matches[1] : null;
     }
 
     /**
@@ -150,7 +160,9 @@ class MainConverter
      */
     public function convertToWave(?string $value): ?int
     {
-        return $this->convertToInt(Trimmer::rtrim($this->convertToString($value), 'cm'));
+        return $this->convertToInt(
+            Trimmer::rtrim($this->convertToString($value), 'cm')
+        );
     }
 
     /**
@@ -159,7 +171,9 @@ class MainConverter
      */
     public function convertToTemperature(?string $value): ?float
     {
-        return $this->convertToFloat(Trimmer::rtrim($this->convertToString($value), '℃'));
+        return $this->convertToFloat(
+            Trimmer::rtrim($this->convertToString($value), '℃')
+        );
     }
 
     /**
@@ -187,9 +201,7 @@ class MainConverter
     public function convertToClassId(?string $name): ?int
     {
         $name = $this->convertToString($name);
-
         $classes = array_column($this->classes, 'id', 'name');
-
         return $classes[$name] ?? null;
     }
 
@@ -200,7 +212,6 @@ class MainConverter
     public function convertToClassName(?int $id): ?string
     {
         $classes = array_column($this->classes, 'name', 'id');
-
         return $classes[$id] ?? null;
     }
 
@@ -211,9 +222,7 @@ class MainConverter
     public function convertToPlaceId(?string $name): ?int
     {
         $name = $this->convertToString($name);
-
         $places = array_column($this->places, 'id', 'name');
-
         return $places[$name] ?? null;
     }
 
@@ -224,7 +233,6 @@ class MainConverter
     public function convertToPlaceName(?int $id): ?string
     {
         $places = array_column($this->places, 'name', 'id');
-
         return $places[$id] ?? null;
     }
 
@@ -235,9 +243,7 @@ class MainConverter
     public function convertToPrefectureId(?string $name): ?int
     {
         $name = $this->convertToString($name);
-
         $prefectures = array_column($this->prefectures, 'id', 'name');
-
         return $prefectures[$name] ?? null;
     }
 
@@ -248,7 +254,6 @@ class MainConverter
     public function convertToPrefectureName(?int $id): ?string
     {
         $prefectures = array_column($this->prefectures, 'name', 'id');
-
         return $prefectures[$id] ?? null;
     }
 
@@ -259,9 +264,7 @@ class MainConverter
     public function convertToStadiumId(?string $name): ?int
     {
         $name = $this->convertToString($name);
-
         $stadiums = array_column($this->stadiums, 'id', 'name');
-
         return $stadiums[$name] ?? null;
     }
 
@@ -272,7 +275,6 @@ class MainConverter
     public function convertToStadiumName(?int $id): ?string
     {
         $stadiums = array_column($this->stadiums, 'name', 'id');
-
         return $stadiums[$id] ?? null;
     }
 
@@ -283,9 +285,7 @@ class MainConverter
     public function convertToTechniqueId(?string $name): ?int
     {
         $name = $this->convertToString($name);
-
         $techniques = array_column($this->techniques, 'id', 'name');
-
         return $techniques[$name] ?? null;
     }
 
@@ -296,7 +296,6 @@ class MainConverter
     public function convertToTechniqueName(?int $id): ?string
     {
         $techniques = array_column($this->techniques, 'name', 'id');
-
         return $techniques[$id] ?? null;
     }
 
@@ -307,9 +306,7 @@ class MainConverter
     public function convertToWeatherId(?string $name): ?int
     {
         $name = $this->convertToString($name);
-
         $weathers = array_column($this->weathers, 'id', 'name');
-
         return $weathers[$name] ?? null;
     }
 
@@ -320,7 +317,6 @@ class MainConverter
     public function convertToWeatherName(?int $id): ?string
     {
         $weathers = array_column($this->weathers, 'name', 'id');
-
         return $weathers[$id] ?? null;
     }
 }
