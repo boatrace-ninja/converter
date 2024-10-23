@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'Converter' => \DI\create('\Boatrace\Ninja\Converter')->constructor(
         \DI\get('MainConverter')

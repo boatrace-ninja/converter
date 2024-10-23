@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     ['id' => 1, 'name' => 'A1'],
     ['id' => 2, 'name' => 'A2'],

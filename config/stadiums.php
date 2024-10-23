@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     ['id' => 1, 'name' => '桐生'],
     ['id' => 2, 'name' => '戸田'],
