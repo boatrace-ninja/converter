@@ -88,7 +88,7 @@ class MainConverter
     public function convertToName(?string $value): ?string
     {
         $pattern = '/[\\x0-\x20\x7f\xc2\xa0\xe3\x80\x80]++/u';
-        $subject = $this->convertToString($value);
+        $subject = $this->convertToString($value) ?? '';
         $array = preg_split($pattern, $subject, -1, PREG_SPLIT_NO_EMPTY) + [1 => ''];
         return is_null($value) ? null : implode(' ', $array);
     }
