@@ -118,8 +118,8 @@ class MainConverter
     public function convertToStartTiming(?string $value): ?float
     {
         return match (substr($value = $this->convertToString($value) ?? '', 0, 1)) {
-            'F' => $this->convertToFloat(-1),
-            'L' => $this->convertToFloat(1),
+            'F' => $this->convertToFloat('-1'),
+            'L' => $this->convertToFloat('1'),
             default => $value === '' ? null : $this->convertToFloat(
                 sprintf('%d%s', 0, preg_replace('/[^0-9.]/', '', $value))
             ),
