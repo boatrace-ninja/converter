@@ -141,9 +141,7 @@ class MainConverter
      */
     public function convertToWindDirection(?string $value): ?int
     {
-        preg_match('/is-wind(\d+)/', $this->convertToString($value) ?? '', $matches);
-
-        return (int) $matches[1] ?? null;
+        return preg_match('/is-wind(\d+)/', $this->convertToString($value) ?? '', $matches) ? (int) $matches[1] : null;
     }
 
     /**
