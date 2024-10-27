@@ -13,11 +13,6 @@ use DI\ContainerBuilder;
 class Converter
 {
     /**
-     * @var \Boatrace\Ninja\MainConverter
-     */
-    protected $converter;
-
-    /**
      * @var \Boatrace\Ninja\Converter
      */
     protected static $instance;
@@ -31,10 +26,7 @@ class Converter
      * @param  \Boatrace\Ninja\MainConverter  $converter
      * @return void
      */
-    public function __construct(MainConverter $converter)
-    {
-        $this->converter = $converter;
-    }
+    public function __construct(protected MainConverter $converter){}
 
     /**
      * @param  string  $name
