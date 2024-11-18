@@ -12,7 +12,7 @@
     "require": {
         "php": "^8.0",
         "boatrace-ninja/trimmer": "^1.0",
-        "nesbot/carbon": "^2.0",
+        "nesbot/carbon": "^2.0 || ^3.0",
         "php-di/php-di": "^6.0 || ^7.0"
     },
     "require-dev": {
