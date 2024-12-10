@@ -35,7 +35,7 @@ class Converter
      */
     public function __call(string $name, array $arguments): string|float|int|null
     {
-        return call_user_func_array([$this->converter, $name], $arguments);
+        return $this->converter->$name(...$arguments);
     }
 
     /**
@@ -45,7 +45,7 @@ class Converter
      */
     public static function __callStatic(string $name, array $arguments): string|float|int|null
     {
-        return call_user_func_array([self::getInstance(), $name], $arguments);
+        return self::getInstance()->$name(...$arguments);
     }
 
     /**
