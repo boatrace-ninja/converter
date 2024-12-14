@@ -14,44 +14,16 @@ class MainConverter
     /**
      * @var array
      */
-    protected $classes;
-
-    /**
-     * @var array
-     */
-    protected $places;
-
-    /**
-     * @var array
-     */
-    protected $prefectures;
-
-    /**
-     * @var array
-     */
-    protected $stadiums;
-
-    /**
-     * @var array
-     */
-    protected $techniques;
-
-    /**
-     * @var array
-     */
-    protected $weathers;
+    protected $properties = [];
 
     /**
      * @return void
      */
     public function __construct()
     {
-        $this->classes = require __DIR__ . '/../config/classes.php';
-        $this->places = require __DIR__ . '/../config/places.php';
-        $this->prefectures = require __DIR__ . '/../config/prefectures.php';
-        $this->stadiums = require __DIR__ . '/../config/stadiums.php';
-        $this->techniques = require __DIR__ . '/../config/techniques.php';
-        $this->weathers = require __DIR__ . '/../config/weathers.php';
+        foreach (glob(__DIR__ . '/../config/*.php') as $filename) {
+            $this->properties[basename($filename, '.php')] = require $filename;
+        }
     }
 
     /**
@@ -201,7 +173,7 @@ class MainConverter
     public function convertToClassId(?string $name): ?int
     {
         $name = $this->convertToString($name);
-        $classes = array_column($this->classes, 'id', 'name');
+        $classes = array_column($this->properties['classes'], 'id', 'name');
         return $classes[$name] ?? null;
     }
 
@@ -211,7 +183,7 @@ class MainConverter
      */
     public function convertToClassName(?int $id): ?string
     {
-        $classes = array_column($this->classes, 'name', 'id');
+        $classes = array_column($this->properties['classes'], 'name', 'id');
         return $classes[$id] ?? null;
     }
 
@@ -222,7 +194,7 @@ class MainConverter
     public function convertToPlaceId(?string $name): ?int
     {
         $name = $this->convertToString($name);
-        $places = array_column($this->places, 'id', 'name');
+        $places = array_column($this->properties['places'], 'id', 'name');
         return $places[$name] ?? null;
     }
 
@@ -232,7 +204,7 @@ class MainConverter
      */
     public function convertToPlaceName(?int $id): ?string
     {
-        $places = array_column($this->places, 'name', 'id');
+        $places = array_column($this->properties['places'], 'name', 'id');
         return $places[$id] ?? null;
     }
 
@@ -243,7 +215,7 @@ class MainConverter
     public function convertToPrefectureId(?string $name): ?int
     {
         $name = $this->convertToString($name);
-        $prefectures = array_column($this->prefectures, 'id', 'name');
+        $prefectures = array_column($this->properties['prefectures'], 'id', 'name');
         return $prefectures[$name] ?? null;
     }
 
@@ -253,7 +225,7 @@ class MainConverter
      */
     public function convertToPrefectureName(?int $id): ?string
     {
-        $prefectures = array_column($this->prefectures, 'name', 'id');
+        $prefectures = array_column($this->properties['prefectures'], 'name', 'id');
         return $prefectures[$id] ?? null;
     }
 
@@ -264,7 +236,7 @@ class MainConverter
     public function convertToStadiumId(?string $name): ?int
     {
         $name = $this->convertToString($name);
-        $stadiums = array_column($this->stadiums, 'id', 'name');
+        $stadiums = array_column($this->properties['stadiums'], 'id', 'name');
         return $stadiums[$name] ?? null;
     }
 
@@ -274,7 +246,7 @@ class MainConverter
      */
     public function convertToStadiumName(?int $id): ?string
     {
-        $stadiums = array_column($this->stadiums, 'name', 'id');
+        $stadiums = array_column($this->properties['stadiums'], 'name', 'id');
         return $stadiums[$id] ?? null;
     }
 
@@ -285,7 +257,7 @@ class MainConverter
     public function convertToTechniqueId(?string $name): ?int
     {
         $name = $this->convertToString($name);
-        $techniques = array_column($this->techniques, 'id', 'name');
+        $techniques = array_column($this->properties['techniques'], 'id', 'name');
         return $techniques[$name] ?? null;
     }
 
@@ -295,7 +267,7 @@ class MainConverter
      */
     public function convertToTechniqueName(?int $id): ?string
     {
-        $techniques = array_column($this->techniques, 'name', 'id');
+        $techniques = array_column($this->properties['techniques'], 'name', 'id');
         return $techniques[$id] ?? null;
     }
 
@@ -306,7 +278,7 @@ class MainConverter
     public function convertToWeatherId(?string $name): ?int
     {
         $name = $this->convertToString($name);
-        $weathers = array_column($this->weathers, 'id', 'name');
+        $weathers = array_column($this->properties['weathers'], 'id', 'name');
         return $weathers[$name] ?? null;
     }
 
@@ -316,7 +288,7 @@ class MainConverter
      */
     public function convertToWeatherName(?int $id): ?string
     {
-        $weathers = array_column($this->weathers, 'name', 'id');
+        $weathers = array_column($this->properties['weathers'], 'name', 'id');
         return $weathers[$id] ?? null;
     }
 }
