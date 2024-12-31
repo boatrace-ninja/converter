@@ -1,0 +1,31 @@
+{
+    "name": "boatrace-ninja/converter",
+    "description": "The Boatrace Ninja Converter.",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "shimomo",
+            "email": "developer@shimomo.net"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "boatrace-ninja/trimmer": "^1.0",
+        "nesbot/carbon": "^2.0 || ^3.0",
+        "php-di/php-di": "^6.0 || ^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Boatrace\\Ninja\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Boatrace\\Ninja\\Tests\\": "tests/"
+        }
+    }
+}
